@@ -35,7 +35,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
          localStorage.setItem("user", JSON.stringify(user));
-        window.location.href = `https://algonest-dashboard.vercel.app/dashboard/${user._id}`;
+        window.location.href = `https://wt-project-6dqd.vercel.app/dashboard/${user._id}`;
       } else {
         handleError(message);
       }
