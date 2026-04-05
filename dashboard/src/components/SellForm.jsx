@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 function SellForm({
   stock,
@@ -38,12 +39,12 @@ function SellForm({
     console.time("sell");
     setIsLoading(true);
     try {
-      await axios.post(`https://algonest.onrender.com/${id}/newOrder`, order);
+      await axios.post(`${URL}/user/${id}/newOrder`, order);
 
       const [ordersRes, holdingsRes, res] = await Promise.all([
-        axios.get(`https://algonest.onrender.com/user/${id}/allOrders`),
-        axios.get(`https://algonest.onrender.com/dashboard/${id}/allHoldings`),
-        axios.get(`https://algonest.onrender.com/user/${id}/summary`),
+        axios.get(`${URL}/user/${id}/allOrders`),
+        axios.get(`${URL}/dashboard/${id}/allHoldings`),
+        axios.get(`${URL}/user/${id}/summary`),
       ]);
 
       setAllOrders(ordersRes.data);

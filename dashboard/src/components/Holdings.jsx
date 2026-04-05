@@ -2,11 +2,11 @@ import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
 import { useState, useEffect } from "react";
 import "../index.css";
-
+const URL = import.meta.env.VITE_BACKEND_URL;
 const Holdings = ({ id, allHoldings, setAllHoldings, summary }) => {
   useEffect(() => {
     axios
-      .get(`https://algonest.onrender.com/dashboard/${id}/allHoldings`)
+      .get(`${URL}/dashboard/${id}/allHoldings`)
       .then((res) => {
         setAllHoldings(res.data);
       });

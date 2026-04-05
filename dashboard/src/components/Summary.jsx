@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import axios from "axios";
-
+const URL = import.meta.env.VITE_BACKEND_URL;
 const Summary = ({ id, user, setUser, summary, setSummary }) => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const res = await axios.get(`https://algonest.onrender.com/user/${id}/summary`);
+        const res = await axios.get(`${URL}/user/${id}/summary`);
         setUser(res.data.user);
         setSummary(res.data.summary);
       } catch (err) {

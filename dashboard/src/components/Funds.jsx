@@ -1,13 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 
+const URL = import.meta.env.VITE_BACKEND_URL;
+
+
 const Funds = ({ id }) => {
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("add");
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(`https://algonest.onrender.com/user/${id}/funds`, {
+      const res = await axios.post(`${URL}/user/${id}/funds`, {
         type,
         amount: parseFloat(amount),
       });

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect } from "react";
-
+const URL = import.meta.env.VITE_BACKEND_URL;
 const Orders = ({ id, allOrders, setAllOrders }) => {
   useEffect(() => {
     axios
-      .get(`https://algonest.onrender.com/user/${id}/allOrders`)
+      .get(`${URL}/user/${id}/allOrders`)
       .then((res) => setAllOrders(res.data))
       .catch((err) => console.error("Order fetch error:", err));
   }, [id]);

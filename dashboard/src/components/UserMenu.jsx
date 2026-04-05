@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-
+const URL = import.meta.env.VITE_BACKEND_URL;
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ function UserMenu() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`https://algonest.onrender.com/user/${id}`);
+        const res = await axios.get(`${URL}/user/${id}`);
         if (res.data.user) {
           setUser(res.data.user);
         }
@@ -44,12 +44,12 @@ function UserMenu() {
   const handleLogout = async () => {
     handleCloseUserMenu();
     try {
-      await axios.post("https://algonest.onrender.com/logout", null, {
+      await axios.post(`${URL}/logout`, null, {
         withCredentials: true,
       });
 
       localStorage.clear();
-      window.location.href = "https://algo-nest.vercel.app/login";
+      window.location.href = "https://wt-project-six.vercel.app/login";
     } catch (err) {
       console.error("Logout failed:", err);
     }

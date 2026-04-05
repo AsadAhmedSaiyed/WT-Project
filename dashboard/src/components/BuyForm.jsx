@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useState, useTransition } from "react";
 import axios from "axios";
-
+const URL = import.meta.env.VITE_BACKEND_URL;
 function BuyForm({
   stock,
   onClose,
@@ -37,15 +37,15 @@ function BuyForm({
     setIsLoading(true);
     try {
       console.time("Buy");
-      await axios.post(`https://algonest.onrender.com/user/${id}/newOrder`, order);
+      await axios.post(`${URL}/user/${id}/newOrder`, order);
       onClose();
       console.timeEnd("Buy");
       startTransition(async () => {
         try {
           const [ordersRes, holdingsRes, res] = await Promise.all([
-            axios.get(`https://algonest.onrender.com/user/${id}/allOrders`),
-            axios.get(`https://algonest.onrender.com/dashboard/${id}/allHoldings`),
-            axios.get(`https://algonest.onrender.com/user/${id}/summary`),
+            axios.get(`${URL}/user/${id}/allOrders`),
+            axios.get(`${URL}/dashboard/${id}/allHoldings`),
+            axios.get(`${URL}/user/${id}/summary`),
           ]);
           setAllOrders(ordersRes.data);
           setAllHoldings(holdingsRes.data);
